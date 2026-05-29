@@ -2,6 +2,7 @@ import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
 import cloudinary from "../lib/cloudinary.js"; // or wherever configured
 import axios from "axios";
+import { generateAIResponse } from "../services/ai.service.js";
 import { getReceiverSocketId, io } from "../lib/socket.js";
 export const getUsersForSidebar=async(req, res)=>{
     try{
@@ -34,6 +35,36 @@ export const sendMessage=async(req,res)=>{
         const {text,image}=req.body;
         const { id: receiverId } = req.params;
         const senderId=req.user._id;
+        const aiUser = await User.findOne({
+            email: "chattyai@bot.com",
+        });
+        if (
+            aiUser &&
+            receiverId === aiUser._id.toString()
+            ) 
+        {
+            const userMessage = new Message({
+                senderId,
+                receiverId,
+                text,
+            });
+            await userMessage.save();
+            const aiReply = await generateAIResponse(`
+                You are Chatty AI, an intelligent assistant integrated into a real-time chat application.
+
+                Be helpful, concise, and friendly.
+
+                User message:
+                ${text}
+            `);
+            const aiMessage = new Message({
+                senderId: aiUser._id,
+                receiverId: senderId,
+                text: aiReply,
+            });
+            await aiMessage.save();
+            return res.status(201).json(aiMessage);
+        }
         let imageUrl;
         if(image){
             const uploadResponse = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`,
@@ -52,7 +83,7 @@ export const sendMessage=async(req,res)=>{
         });
         await newMessage.save();
         const receiverSocketId = getReceiverSocketId(receiverId);
-        if (getReceiverSocketId) {
+        if (receiverSocketId) {
            io.to(receiverSocketId).emit("newMessage", newMessage);
         }
         //todo: realtime functionality goes here=>socket.io

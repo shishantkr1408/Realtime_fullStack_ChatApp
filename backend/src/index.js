@@ -7,6 +7,7 @@ import messageRoutes from "./routes/message.route.js";
 import cors from "cors"
 import { app,server} from "./lib/socket.js";
 import path from "path";
+import documentRoutes from "./routes/document.route.js";
 dotenv.config();
 const PORT=process.env.PORT|| 5001;
 const __dirname=path.resolve();
@@ -21,6 +22,7 @@ app.use(cors({
 ))
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/documents", documentRoutes);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
