@@ -1,12 +1,14 @@
 import React, { useRef, useState } from 'react'
 import { useChatStore } from '../store/useChatStore';
-import { Image, Send, X } from 'lucide-react';
+import { Image, Send, X,FileText } from 'lucide-react';
 import toast from "react-hot-toast";
 const MessageInput = () => {
     const [text,setText]=useState("");
     const[imagePreview,setImagePreview]=useState(null);
     const fileInputRef=useRef(null);
-    const {sendMessage}=useChatStore();
+    const pdfInputRef = useRef(null);
+    const { sendMessage, uploadDocument, selectedUser } =
+    useChatStore();
     const handleImageChange=(e)=>{
         const file = e.target.files[0];
         if (!file.type.startsWith("image/")) {
@@ -23,6 +25,19 @@ const MessageInput = () => {
     const removeImage=()=>{
         setImagePreview(null);
         if (fileInputRef.current) fileInputRef.current.value = "";
+    };
+    const handlePDFUpload = async (e) => {
+      const file = e.target.files[0];
+
+      if (!file) return;
+
+      const formData = new FormData();
+
+      formData.append("pdf", file);
+
+      await uploadDocument(formData);
+
+      e.target.value = "";
     };
     const handleSendMessage=async(e)=>{
         e.preventDefault();
@@ -80,7 +95,6 @@ const MessageInput = () => {
             ref={fileInputRef}
             onChange={handleImageChange}
           />
-
           <button
             type="button"
             className={`hidden sm:flex btn btn-circle
@@ -89,6 +103,22 @@ const MessageInput = () => {
           >
             <Image size={20} />
           </button>
+          <input
+            type="file"
+            accept=".pdf"
+            className="hidden"
+            ref={pdfInputRef}
+            onChange={handlePDFUpload}
+          />
+          {selectedUser?.email === "chattyai@bot.com" && (
+            <button
+              type="button"
+              className="hidden sm:flex btn btn-circle text-zinc-400"
+              onClick={() => pdfInputRef.current?.click()}
+            >
+              <FileText size={20} />
+            </button>
+          )}
         </div>
         <button
           type="submit"

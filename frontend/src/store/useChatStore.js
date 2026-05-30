@@ -40,6 +40,28 @@ export const useChatStore = create((set,get) => ({
         toast.error(error.response.data.message);
         }
     },
+    uploadDocument: async (formData) => {
+        try {
+            const res = await axiosInstance.post(
+                "/documents/upload",
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+
+            toast.success("Document uploaded successfully");
+
+            return res.data;
+        } catch (error) {
+            toast.error(
+                error?.response?.data?.message ||
+                "Upload failed"
+            );
+        }
+    },
     subscribeToMessages: () => {
         const { selectedUser } = get();
         if (!selectedUser) return;

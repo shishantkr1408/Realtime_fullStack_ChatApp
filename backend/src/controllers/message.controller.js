@@ -49,14 +49,17 @@ export const sendMessage=async(req,res)=>{
                 text,
             });
             await userMessage.save();
-            const aiReply = await generateAIResponse(`
+            const aiReply = await generateAIResponse(
+                `
                 You are Chatty AI, an intelligent assistant integrated into a real-time chat application.
 
                 Be helpful, concise, and friendly.
 
                 User message:
                 ${text}
-            `);
+                `,
+                senderId
+            );
             const aiMessage = new Message({
                 senderId: aiUser._id,
                 receiverId: senderId,
