@@ -51,19 +51,23 @@ ${prompt}
     return result.response.text();
   } 
     catch (error) {
-  console.log("Gemini Error:", error);
+    console.log("Gemini Error Message:");
+    console.log(error.message);
 
-  if (error.status === 429) {
-    return "Chatty AI is currently experiencing rate limits. Please try again in a few moments.";
-  }
+    console.log("Gemini Error Status:");
+    console.log(error.status);
 
-  if (
-    error.message &&
-    error.message.includes("location is not supported")
-  ) {
-    return "AI service is unavailable from the current deployment region.";
-  }
+    if (error.status === 429) {
+        return "Chatty AI is currently experiencing rate limits. Please try again in a few moments.";
+    }
 
-  return `AI Error (${error.status || "Unknown"})`;
+    if (
+        error.message &&
+        error.message.includes("location is not supported")
+    ) {
+        return "AI service is unavailable from the current deployment region.";
+    }
+
+    return `AI Error (${error.status || "Unknown"})`;
 }
 };
