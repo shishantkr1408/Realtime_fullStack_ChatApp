@@ -1,40 +1,68 @@
 <div align="center">
 
-# 💬 Real-time AI Chat App
+# 🚀 Chatty AI
 
-### AI-Powered Messaging Platform with Document-Aware Intelligence
+### Real-Time Messaging Platform with AI-Powered Document Intelligence
 
-A full-stack real-time communication platform that combines human-to-human messaging with an intelligent AI assistant. Users can chat in real time, upload PDF documents, maintain persistent conversations, and interact with AI directly inside the chat interface.
+Chatty AI is a production-ready full-stack real-time communication platform that combines human-to-human messaging, conversational AI, and PDF-based knowledge retrieval into a single intelligent workspace. Users can exchange messages instantly, upload documents, maintain persistent conversations, and interact with an AI assistant capable of generating context-aware responses from uploaded content.
 
-<br>
+<p align="center">
 
-![React](https://img.shields.io/badge/React-Frontend-61DAFB?logo=react)
-![Node.js](https://img.shields.io/badge/Node.js-Backend-339933?logo=node.js)
+![React](https://img.shields.io/badge/Frontend-React%2019-61DAFB?logo=react)
+![NodeJS](https://img.shields.io/badge/Backend-Node.js-339933?logo=node.js)
 ![Express](https://img.shields.io/badge/Express-Framework-000000?logo=express)
-![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb)
-![Socket.IO](https://img.shields.io/badge/Socket.IO-Real--Time-010101?logo=socketdotio)
-![Gemini](https://img.shields.io/badge/Gemini-AI-4285F4)
-![JWT](https://img.shields.io/badge/JWT-Authentication-000000)
+![MongoDB](https://img.shields.io/badge/Database-MongoDB-47A248?logo=mongodb)
+![Socket.IO](https://img.shields.io/badge/Realtime-Socket.IO-black?logo=socketdotio)
+![Gemini](https://img.shields.io/badge/AI-Gemini%202.5%20Flash-blue)
+![JWT](https://img.shields.io/badge/Auth-JWT-orange)
+![Render](https://img.shields.io/badge/Deployment-Render-46E3B7)
+
+</p>
 
 </div>
 
 ---
 
-# 🚀 Overview
+# 🌐 Live Demo
 
-This project is an AI-powered real-time communication platform that integrates messaging, document management, and AI assistance into a single workflow.
+🔗 **Live Application:** https://realtime-fullstack-chatapp.onrender.com
+
+# 📖 Overview
+
+Chatty AI is a full-stack real-time communication platform that extends traditional messaging with AI-powered document understanding.
 
 Users can:
 
 - Exchange messages instantly through real-time communication.
 - Maintain persistent conversation history.
-- Upload PDF documents.
-- Ask questions about uploaded content.
-- Generate interview questions.
-- Summarize information.
-- Receive contextual AI responses directly inside the chat experience.
+- Upload PDF documents
+- Interact with an AI assistant
+- Ask questions about uploaded documents
+- Generate summaries
+- Receive context-aware responses based on document content directly inside the chat experience.
 
-Unlike traditional AI tools that require switching between multiple applications, this platform brings communication and knowledge assistance together in one place.
+Instead of switching between chat applications, PDF readers, and AI tools, Chatty AI brings everything together into one seamless experience.
+
+---
+
+# 🎯 Problem Statement
+
+Modern communication and knowledge systems are often fragmented.
+
+Users typically need:
+
+- One platform for messaging
+- Another for reading documents
+- Another for AI assistance
+
+Chatty AI eliminates this fragmentation by combining:
+
+✅ Real-Time Communication  
+✅ AI Assistance  
+✅ PDF Knowledge Extraction  
+✅ Context-Aware Conversations
+
+inside a single application.
 
 ---
 
@@ -45,177 +73,458 @@ Unlike traditional AI tools that require switching between multiple applications
 - Instant message delivery using Socket.IO.
 - Low-latency bidirectional communication.
 - Live conversation updates.
-- Persistent chat storage.
+- Online user presence tracking.
+- Persistent chat history across sessions.
 
-## 🤖 Integrated AI Assistant
+---
 
-- Dedicated AI participant ("Chatty AI").
+## 🤖 AI-Powered Assistant
+
+Chatty AI is integrated directly into the messaging ecosystem as a dedicated chat participant, enabling users to interact with AI as naturally as they would with another user.
+
 - Natural language question answering.
-- Concept explanations.
+- Concept explanations and learning assistance.
 - Interview question generation.
-- Information summarization.
+- Content summarization.
+- Context-aware responses powered by uploaded documents.
 
-## 📄 PDF Knowledge Processing
+### 📄 Document Intelligence
 
-- Upload PDF documents.
-- Automatic text extraction.
-- Store processed content in MongoDB.
-- Use uploaded knowledge during AI conversations.
+Users can upload PDF documents and leverage their content during AI conversations.
+
+- Automatic PDF text extraction and processing.
+- Persistent document storage.
+- Document-aware question answering.
+- Summaries, explanations, and knowledge extraction from uploaded content.
+
+#### 🧠 Context-Aware Retrieval
+
+To provide relevant responses, the AI dynamically selects document context based on the user's query.
+
+**Latest Document Retrieval**
+
+Queries such as:
+
+```text
+Summarize this PDF
+Explain this document
+Summarise this
+```
+
+automatically use the most recently uploaded document as context.
+
+---
+
+**Document-Specific Retrieval**
+
+Queries such as:
+
+```text
+Explain OperatingSystems.pdf
+
+Summarize DBMS Notes.pdf
+```
+
+allow the AI to identify and retrieve information from the referenced document.
+
+---
+
+**Intelligent Fallback**
+
+When no document is explicitly mentioned:
+
+- Available documents are evaluated for relevance.
+- Appropriate context is injected into the prompt.
+- The AI generates document-aware responses whenever possible.
+
+---
 
 ## 🔐 Authentication & Security
 
 - JWT-based authentication.
-- Secure user sessions.
 - Protected application routes.
+- Secure password hashing with bcrypt.
+- User-specific data and document ownership.
+- Secure session management.
 
-## 💾 Persistent Storage
+---
 
-- User management.
-- Chat history storage.
-- Document storage.
+## 👤 User Management
+
+- User registration and login.
+- Profile customization and profile pictures.
+- Online/offline status tracking.
+- Personalized user experience.
+
+---
+## ☁️ Cloud Storage & Media Management
+
+- Cloudinary-powered media storage.
+- Secure image uploads and Profile Picture Managment.
+- Optimized asset management.
+- Reliable cloud-hosted media delivery.
+
+## 💾 Persistent Data Storage
+
+- User account management.
+- Conversation history storage.
+- Document storage and retrieval.
 - Session continuity across visits.
 
 ---
 
+## 🚀 Production-Ready Deployment
+
+- Fully deployed on Render.
+- MongoDB Atlas integration.
+- Environment-based configuration.
+- Scalable client-server architecture.
+- Production build and deployment workflow.
+
+
 # 🏗️ System Architecture
 
 ```text
-┌─────────────┐
-│ React Client│
-└──────┬──────┘
-       │
-       │ HTTP + Socket.IO
-       ▼
-┌─────────────────────┐
-│ Express + Node.js   │
-└──────┬──────────────┘
-       │
-       ├────────────► MongoDB
-       │                │
-       │                ├─ Users
-       │                ├─ Messages
-       │                └─ Documents
-       │
-       └────────────► Gemini AI
-                         │
-                         └─ Contextual Responses
+                     ┌────────────────────┐
+                     │    React Client    │
+                     └─────────┬──────────┘
+                               │
+                    HTTP + Socket.IO
+                               │
+                               ▼
+                  ┌────────────────────────┐
+                  │   Node.js + Express    │
+                  └─────────┬──────────────┘
+                            │
+        ┌───────────────────┼───────────────────┐
+        │                   │                   │
+        ▼                   ▼                   ▼
+
+   MongoDB Atlas       Gemini AI          Cloudinary
+
+      Users         AI Responses         Media Files
+      Messages
+      Documents
 ```
 
 ---
 
-# ⚙️ Architecture Decisions
-
-## 1. Socket.IO for Real-Time Communication
-
-Socket.IO was selected to provide low-latency bidirectional communication and instant message delivery.
-
-Benefits:
-
-- Responsive user experience
-- Real-time updates
-- Efficient communication model
-- Reduced polling overhead
-
----
-
-## 2. MongoDB for Persistent Storage
-
-MongoDB stores:
-
-- Users
-- Messages
-- Document content
-
-This allows conversations and uploaded knowledge to remain accessible across sessions.
-
----
-
-## 3. AI as a First-Class Chat Participant
-
-Instead of creating a separate AI interface, Chatty AI was implemented as a dedicated participant inside the existing messaging architecture.
-
-Advantages:
-
-- Consistent user experience
-- Shared messaging infrastructure
-- Reusable persistence layer
-- Simplified integration
-
----
-
-## 4. Document Processing Pipeline
-
-PDF files follow the workflow:
+# 🤖 AI Workflow
 
 ```text
-Upload PDF
-      │
-      ▼
-Extract Text
-      │
-      ▼
-Store in MongoDB
-      │
-      ▼
-Provide Context to Gemini
-      │
-      ▼
-Generate Intelligent Responses
+      User Message / PDF Upload
+                    │
+                    ▼
+            React Frontend
+                    │
+                    ▼
+           Express.js API Layer
+                    │
+        ┌───────────┴───────────┐
+        │                       │
+        ▼                       ▼
+ Message Handling      PDF Processing
+                        (Multer + PDF Parse)
+        │                       │
+        └───────────┬───────────┘
+                    ▼
+              MongoDB Atlas
+      (Users • Messages • Documents)
+                    │
+                    ▼
+       Document Context Selection & Prompt Construction
+                    │
+                    ▼
+            Gemini 2.5 Flash
+                    │
+                    ▼
+          Context-Aware AI Response
+                    │
+                    ▼
+       Socket.IO Real-Time Updates
+                    │
+                    ▼
+               User Interface
 ```
-
-This enables users to interact with their uploaded knowledge naturally through conversation.
-
----
-
-## 5. Gemini Integration
-
-Gemini 2.5 Flash was selected because it provides:
-
-- Fast response generation
-- Strong conversational capabilities
-- Context-aware prompting
-- Efficient performance for interactive chat systems
-
----
-
-# 🛠️ Tech Stack
-
-| Category | Technology |
-|-----------|------------|
-| Frontend | React.js |
-| Styling | Tailwind CSS |
-| Backend | Node.js |
-| Framework | Express.js |
-| Database | MongoDB Atlas |
-| Real-Time Communication | Socket.IO |
-| Authentication | JWT |
-| AI Integration | Google Gemini 2.5 Flash |
-| File Uploads | Multer |
-| PDF Processing | PDF Parse |
 
 ---
 
 # 📂 Project Structure
 
 ```text
-Realtime_fullStack_ChatApp
+chat-app
 │
-├── frontend/
-│   ├── src/
-│   ├── public/
-│   └── package.json
+├── backend
+│   ├── controllers
+│   ├── routes
+│   ├── models
+│   ├── middleware
+│   ├── services
+│   ├── lib
+│   └── seeds
 │
-├── backend/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   ├── socket/
-│   └── package.json
+├── frontend
+│   ├── src
+│   │   ├── components
+│   │   ├── pages
+│   │   ├── store
+│   │   ├── lib
+│   │   └── constants
+│   │
+│   └── public
 │
-├── README.md
-└── package.json
+└── README.md
 ```
+
+---
+
+# 🛠️ Tech Stack
+
+| Layer | Technologies |
+|---------|-------------|
+| Frontend | React 19, Vite, React Router |
+| State Management | Zustand |
+| UI & Styling | Tailwind CSS, DaisyUI |
+| Backend | Node.js, Express.js |
+| Database | MongoDB Atlas, Mongoose |
+| Authentication | JWT, bcrypt |
+| Real-Time Communication | Socket.IO |
+| AI Integration | Google Gemini 2.5 Flash |
+| Document Processing | PDF Parse |
+| File Handling | Multer |
+| Cloud Services | Cloudinary |
+| Deployment | Render |
+| Development Tools | Git, GitHub |
+
+---
+
+# 🚀 Deployment
+
+The application is deployed using Render.
+
+Deployment architecture:
+
+```text
+Render
+   │
+   ├── Backend (Node.js)
+   │
+   ├── Frontend Build (Vite)
+   │
+   └── MongoDB Atlas
+```
+
+Production build process:
+
+```bash
+npm install --prefix backend
+npm install --prefix frontend
+npm run build --prefix frontend
+npm start --prefix backend
+```
+
+Highlights:
+
+- Production-ready deployment
+- Environment-based configuration
+- Frontend served through backend
+- MongoDB Atlas integration
+- Cloudinary media hosting
+
+---
+
+# ⚙️ Local Setup
+
+## Clone Repository
+
+```bash
+git clone https://github.com/shishantkr1408/Realtime_fullStack_ChatApp.git
+```
+
+```bash
+cd Realtime_fullStack_ChatApp
+```
+
+---
+
+## Install Dependencies
+
+```bash
+npm install
+
+npm install --prefix backend
+
+npm install --prefix frontend
+```
+
+---
+
+## Environment Variables
+
+Create:
+
+```env
+backend/.env
+```
+
+Example:
+
+```env
+PORT=5001
+
+MONGODB_URI=your_mongodb_uri
+
+JWT_SECRET=your_jwt_secret
+
+GEMINI_API_KEY=your_gemini_api_key
+
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
+
+---
+
+## Run Backend
+
+```bash
+cd backend
+
+npm run dev
+```
+
+---
+
+## Run Frontend
+
+```bash
+cd frontend
+
+npm run dev
+```
+
+---
+
+# 🧩 Engineering Decisions
+
+## 🤖 AI as a First-Class Chat Participant
+
+Instead of building a separate AI interface, the assistant was integrated directly into the existing messaging ecosystem as a dedicated chat participant.
+
+Benefits:
+
+- Natural conversational experience
+- Unified user interface
+- Reusable messaging infrastructure
+- Consistent chat history and persistence
+
+---
+
+## ⚡ Real-Time Communication with Socket.IO
+
+Socket.IO powers low-latency, bidirectional communication across the platform.
+
+Benefits:
+
+- Instant message delivery
+- Live conversation updates
+- Online user presence tracking
+- Responsive user experience
+
+---
+
+## 📄 Lightweight Document-Aware AI Workflow
+
+Rather than introducing a vector database, the application currently uses a lightweight retrieval approach:
+
+- PDF text extraction and processing
+- Dynamic document selection
+- Context injection during prompt construction
+
+This keeps the architecture simple while enabling document-aware AI responses based on uploaded content.
+
+---
+
+## 🚀 Production-Ready Deployment
+
+The platform is deployed using a modern cloud-based architecture:
+
+- Render for application hosting
+- MongoDB Atlas for database management
+- Cloudinary for media storage
+
+This enables a fully deployed, scalable, and accessible application beyond a local development environment.
+
+---
+
+## 🧠 Gemini-Powered Conversational Intelligence
+
+Google Gemini 2.5 Flash was selected as the underlying language model due to its strong balance of speed, contextual understanding, and conversational capabilities.
+
+Benefits:
+
+- Fast response generation
+- Context-aware interactions
+- Efficient handling of document-assisted conversations
+- Improved user experience in real-time chat scenarios
+
+---
+
+# 📈 Skills Demonstrated
+
+This project showcases experience with:
+
+- Full-Stack Development
+- REST API Design
+- Real-Time Systems
+- Authentication & Authorization
+- Database Design
+- State Management
+- AI Integration
+- Prompt Engineering
+- PDF Processing
+- Cloud Deployment
+- Production Hosting
+- System Design
+- Scalable Application Architecture
+
+---
+
+# 📈 Future Improvements
+
+The current platform provides real-time messaging, AI-powered conversations, and PDF-based document understanding. Future iterations could expand both its AI capabilities and collaborative features.
+
+## 🧠 Advanced AI & Knowledge Retrieval
+
+- Vector Database Integration
+- Embedding-Based Semantic Search
+- Full Retrieval-Augmented Generation (RAG) Pipeline
+- Multi-Document Retrieval & Reasoning
+- AI Conversation Memory
+- OCR Support for Scanned PDFs
+- Advanced Context Ranking & Retrieval Strategies
+
+---
+
+## 🤝 Collaboration & Communication
+
+- Group Chats
+- Team Workspaces
+- Shared Knowledge Repositories
+- Collaborative Document Discussions
+- Knowledge Sharing Channels
+
+---
+
+## 🚀 Platform Enhancements
+
+- Streaming AI Responses
+- Advanced Search Across Chats & Documents
+- Analytics & Usage Dashboard
+- Real-Time Notifications
+- Mobile Optimization
+- Progressive Web App (PWA) Support
+- Enhanced Performance & Scalability Improvements
 
 ---
 
@@ -223,81 +532,46 @@ Realtime_fullStack_ChatApp
 
 ### Login Page
 
-_Add screenshot here_
+```md
+![Login](./screenshots/login.png)
+```
+### Home Page
 
-### Real-Time Chat Interface
+```md
+![Home](./screenshots/home.png)
+```
 
-_Add screenshot here_
+### Chat Interface
 
-### Chatty AI Interaction
+```md
+![Chat](./screenshots/chat.png)
+```
 
-_Add screenshot here_
+### PDF Upload
 
-### PDF Upload Workflow
+```md
+![Upload](./screenshots/upload.png)
+```
 
-_Add screenshot here_
+### AI Responses
 
----
-
-# 🧠 What I Used AI For
-
-AI tools were primarily used for:
-
-- Research
-- API exploration
-- Debugging
-- Evaluating implementation approaches
-- Learning AI integration workflows
-
-Core application architecture, authentication, database design, Socket.IO integration, frontend implementation, and feature integration were developed and adapted manually based on project requirements.
-
----
-
-# 📈 Future Improvements
-
-Given additional development time, the platform could be extended with:
-
-## Advanced AI Features
-
-- Vector embeddings
-- Semantic search
-- Retrieval-Augmented Generation (RAG)
-- Conversation memory
-- Multi-document retrieval
-
-## Collaboration Features
-
-- Shared workspaces
-- Team chat rooms
-- Knowledge sharing
-
-## Platform Enhancements
-
-- AI streaming responses
-- Analytics dashboard
-- Advanced search
-- Mobile optimization
-- Notification system
-
----
-
-# 💡 Why This Project Matters
-
-Most communication tools and AI assistants exist as separate products.
-
-This project explores a different approach by integrating communication, knowledge management, and AI assistance into a unified conversational experience.
-
-The result is a platform where users can collaborate, learn, retrieve information, and interact with AI without leaving the chat environment.
+```md
+![AI](./screenshots/ai-response.png)
+```
 
 ---
 
 # 👨‍💻 Author
 
-**Shishant Kumar**
+## Shishant Kumar
 
-Full Stack Developer | Software Engineering Enthusiast
+Full-Stack Developer | AI Applications | Software Engineering
 
-GitHub: https://github.com/shishantkr1408
+GitHub:
+
+```text
+https://github.com/shishantkr1408
+```
 
 ---
 
