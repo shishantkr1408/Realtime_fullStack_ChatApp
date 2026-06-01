@@ -532,32 +532,23 @@ The current platform provides real-time messaging, AI-powered conversations, and
 
 ### Login Page
 
-```md
 ![Login](./screenshots/login.png)
-```
+
 ### Home Page
 
-```md
 ![Home](./screenshots/home.png)
-```
 
 ### Chat Interface
 
-```md
 ![Chat](./screenshots/chat.png)
-```
 
 ### PDF Upload
 
-```md
 ![Upload](./screenshots/upload.png)
-```
 
 ### AI Responses
 
-```md
 ![AI](./screenshots/ai-response.png)
-```
 
 ---
 
