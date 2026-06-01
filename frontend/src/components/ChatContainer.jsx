@@ -72,13 +72,21 @@ const ChatContainer = () => {
 
             <div className="chat-bubble flex flex-col">
               {message.image && (
-                <img
-                  src={message.image}
-                  alt="Attachment"
-                  className="sm:max-w-[200px] rounded-md mb-2"
-                />
+              <img
+              src={message.image}
+              alt="Attachment"
+              className="sm:max-w-[200px] rounded-md mb-2"
+              />
               )}
-              {message.text && <p>{message.text}</p>}
+              {message.messageType === "document" && (
+              <div className="flex items-center gap-2">
+              <span className="text-lg">📄</span>
+              <span>{message.documentName}</span>
+              </div>
+              )}
+              {message.text && (
+              <p>{message.text}</p>
+              )}
             </div>
           </div>
         ))}

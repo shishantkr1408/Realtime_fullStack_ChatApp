@@ -66,7 +66,10 @@ export const sendMessage=async(req,res)=>{
                 text: aiReply,
             });
             await aiMessage.save();
-            return res.status(201).json(aiMessage);
+            return res.status(201).json({
+                userMessage,
+                aiMessage,
+            });
         }
         let imageUrl;
         if(image){

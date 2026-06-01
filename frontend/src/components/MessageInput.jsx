@@ -3,6 +3,7 @@ import { useChatStore } from '../store/useChatStore';
 import { Image, Send, X,FileText } from 'lucide-react';
 import toast from "react-hot-toast";
 const MessageInput = () => {
+    const [selectedPDF, setSelectedPDF] = useState(null);
     const [text,setText]=useState("");
     const[imagePreview,setImagePreview]=useState(null);
     const fileInputRef=useRef(null);
@@ -26,24 +27,27 @@ const MessageInput = () => {
         setImagePreview(null);
         if (fileInputRef.current) fileInputRef.current.value = "";
     };
-    const handlePDFUpload = async (e) => {
+    const handlePDFUpload = (e) => {
       const file = e.target.files[0];
 
       if (!file) return;
 
-      const formData = new FormData();
-
-      formData.append("pdf", file);
-
-      await uploadDocument(formData);
-
-      e.target.value = "";
+      setSelectedPDF(file);
     };
     const handleSendMessage=async(e)=>{
         e.preventDefault();
-        if (!text.trim() && !imagePreview) return;
-
+        if (!text.trim() && !imagePreview && !selectedPDF) return
         try {
+          if (selectedPDF) {
+            const formData = new FormData();
+            formData.append("pdf", selectedPDF);
+            await uploadDocument(formData);
+            setSelectedPDF(null);
+            if (pdfInputRef.current) pdfInputRef.current.value = "";
+            if (!text.trim() && !imagePreview) {
+              return;
+            }
+          }
         await sendMessage({
             text: text.trim(),
             image: imagePreview,
@@ -78,7 +82,21 @@ const MessageInput = () => {
           </div>
         </div>
       )}
+      {selectedPDF && (
+        <div className="mb-3 flex items-center gap-2 p-2 rounded-lg bg-base-200">
+          <FileText size={20} />
+          <span className="text-sm">
+            {selectedPDF.name}
+          </span>
 
+          <button
+            type="button"
+            onClick={() => setSelectedPDF(null)}
+          >
+            <X size={14} />
+          </button>
+        </div>
+      )}
       <form onSubmit={handleSendMessage} className="flex items-center gap-2">
         <div className="flex-1 flex gap-2">
           <input
@@ -123,7 +141,7 @@ const MessageInput = () => {
         <button
           type="submit"
           className="btn btn-sm btn-circle"
-          disabled={!text.trim() && !imagePreview}
+          disabled={!text.trim() && !imagePreview && !selectedPDF}
         >
           <Send size={22} />
         </button>

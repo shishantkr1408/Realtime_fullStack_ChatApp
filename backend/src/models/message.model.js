@@ -17,6 +17,14 @@ const messageSchema=new mongoose.Schema(
         image:{
             type:String,
         },
+        messageType: {
+            type: String,
+            enum: ["text", "image", "document"],
+            default: "text",
+        },
+        documentName: {
+            type: String,
+        },
     },
     {timestamps:true}
 );

@@ -35,24 +35,57 @@ export const useChatStore = create((set,get) => ({
         const { selectedUser, messages } = get();
         try {
         const res = await axiosInstance.post(`/messages/send/${selectedUser._id}`, messageData);
-        set({ messages: [...messages, res.data] });
+            if (selectedUser?.email === "chattyai@bot.com") {
+                set((state) => ({
+                    messages: [
+                    ...state.messages,
+                    res.data.userMessage,
+                    res.data.aiMessage,
+                    ],
+                }));
+            } 
+            else {
+                set((state) => ({
+                    messages: [
+                    ...state.messages,
+                    res.data,
+                    ],
+                }));
+            }
         } catch (error) {
         toast.error(error.response.data.message);
         }
     },
     uploadDocument: async (formData) => {
+        const { messages } = get();
+
         try {
             const res = await axiosInstance.post(
                 "/documents/upload",
                 formData,
                 {
                     headers: {
-                        "Content-Type": "multipart/form-data",
+                        "Content-Type":
+                            "multipart/form-data",
                     },
                 }
             );
 
-            toast.success("Document uploaded successfully");
+            set((state) => ({
+                messages: [
+                    ...state.messages,
+                    {
+                    _id: Date.now(),
+                    senderId: useAuthStore.getState().authUser._id,
+                    createdAt: new Date().toISOString(),
+                    messageType: "document",
+                    documentName: res.data.fileName,
+                    },
+                ],
+            }));
+            toast.success(
+                "Document uploaded successfully"
+            );
 
             return res.data;
         } catch (error) {
@@ -80,6 +113,26 @@ export const useChatStore = create((set,get) => ({
     unsubscribeFromMessages: () => {
         const socket = useAuthStore.getState().socket;
         socket.off("newMessage");
+    },
+    clearAIChat: async () => {
+        try {
+            await axiosInstance.delete(
+            "/ai/clear-chat"
+            );
+
+            set({
+            messages: [],
+            });
+
+            toast.success(
+            "AI chat cleared successfully"
+            );
+        } catch (error) {
+            toast.error(
+            error?.response?.data?.message ||
+            "Failed to clear chat"
+            );
+        }
     },
     setSelectedUser: (selectedUser) => set({ selectedUser }),
 
